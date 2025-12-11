@@ -1,0 +1,45 @@
+{
+	"name": "ds_files_dynamic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pl_filename": {
+				"type": "string"
+			},
+			"pl_container": {
+				"type": "string"
+			},
+			"pl_folder": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().pl_filename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().pl_folder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().pl_container",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
